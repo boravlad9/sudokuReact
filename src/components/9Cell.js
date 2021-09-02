@@ -2,15 +2,12 @@ import React from 'react';
 import OneCell from './1Cell.js'
 
 class NineCell extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   renderOneCell(index){
     return (
       <OneCell
         value={this.props.matrix[index]}
-        onClick={(index) => this.props.onClick(index)}
+        onClick={() => this.props.onClick(index)}
       />
     );
   }

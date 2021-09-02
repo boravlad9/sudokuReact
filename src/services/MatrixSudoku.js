@@ -3,22 +3,26 @@ const maxRows = 9, maxColls = 9;
 
 export const check = (matrix, maxR, maxC) =>{
 
-
       for (let index = 0; index < maxRows; index++){
-
         if (index < maxR && matrix[index][maxC] === matrix[maxR][maxC]){
           return false;
         }
-
         if (index < maxC && matrix[maxR][index] === matrix[maxR][maxC]){
           return false;
         }
-
+      }
+      const cell = getCell(matrix, Math.floor(maxR/3) + Math.floor(maxC/3));
+      for (let index = 0; index < cell.length; index++){
+        for (let secondIndex = index + 1; secondIndex < cell.length; secondIndex++){
+          if (cell[index] !== undefined && cell[index] === cell[secondIndex])
+          return false;
+        }
       }
       return true;
 }
 
 export const checkFinal = (matrix) =>{
+
   for (let i = 0; i < maxRows; i++){
     for (let j = 0; j < maxColls; j++){
       if (matrix[i][j] === undefined)
@@ -30,6 +34,7 @@ export const checkFinal = (matrix) =>{
 
 
 export const recursiveCheck = (matrix, indexR, indexC) =>{
+
     for (let possValues = 1; possValues <= 9; possValues++){
       matrix[indexR][indexC] = possValues;
 
@@ -43,8 +48,7 @@ export const recursiveCheck = (matrix, indexR, indexC) =>{
         else{
           recursiveCheck(matrix, indexR, indexC + 1);
         }
-        if (checkFinal(matrix, indexR, indexC))
-        {
+        if (checkFinal(matrix, indexR, indexC)){
           return ;
         }
       }
@@ -68,6 +72,7 @@ export const generateMatrix = () =>{
 
 
 export const getCell = (matrix, indexCellMat) =>{
+
   let cell =  new Array(maxColls);
   const indexR = Math.floor(indexCellMat / 3) * 3, indexC = (indexCellMat % 3) * 3;
   for (let indexCell = 0; indexCell < 9; indexCell++){
@@ -78,13 +83,20 @@ export const getCell = (matrix, indexCellMat) =>{
 
 
 export const isFinal = (matrix, matrixSol) => {
-  for (let indexR = 0; indexR < maxRows; indexR++)
-  {
-    for (let indexC = 0; indexC < maxColls; indexC++)
-    {
-      if (matrix[indexR][indexC] != matrixSol[indexR][indexC])
+
+  for (let indexR = 0; indexR < maxRows; indexR++){
+    for (let indexC = 0; indexC < maxColls; indexC++){
+      if (matrix[indexR][indexC] !== matrixSol[indexR][indexC])
         return false;
     }
   }
   return true;
+}
+
+export const getCells = (matrix) =>{
+  let cells = [];
+  for (let index = 0; index < 9; index++){
+    cells.push(getCell(matrix, index));
+  }
+  return cells;
 }

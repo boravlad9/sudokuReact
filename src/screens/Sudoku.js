@@ -1,6 +1,6 @@
 import React from 'react';
 import NineCell from '../components/9Cell.js'
-import {generateMatrix, getCell, isFinal} from '../services/MatrixSudoku.js'
+import {generateMatrix, isFinal, getCells} from '../services/MatrixSudoku.js'
 
 class Sudoku extends React.Component {
 
@@ -22,26 +22,35 @@ class Sudoku extends React.Component {
           }
       }
     }
-    this.state = {solution : solution, matrix : matrix};
+    matrix = getCells(matrix);
+    solution = getCells(solution);
+    this.state = {solution : solution, matrix : matrix, isDone : false};
     console.log(solution);
   }
 
   renderNineCell(index){
     return (
       <NineCell
-        matrix={getCell(this.state.matrix, index)}
+        matrix={this.state.matrix[index]}
         onClick={(indexC) => this.handleClick(index, indexC)}
       />
     );
   }
 
   handleClick(indexCell, indexNr){
-      console.log(indexCell);
-      console.log(indexNr);
+    let temp = this.state.matrix;
+    temp[indexCell][indexNr]++;
+    if (temp[indexCell][indexNr] === 10){
+      temp[indexCell][indexNr] = 1;
+    }
+    this.setState({matrix : temp});
+    this.setState({isDone : isFinal(this.state.matrix, this.state.solution)});
   }
 
   render() {
+    const value = this.state.isDone ? "Win" : "Not win";
     return (
+      <>
       <div style={{display:"flex"}}>
         <div>
           {this.renderNineCell(0)}
@@ -59,6 +68,8 @@ class Sudoku extends React.Component {
           {this.renderNineCell(8)}
         </div>
       </div>
+      <p>{value}</p>
+      </>
     );
   }
 }
