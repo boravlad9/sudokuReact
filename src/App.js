@@ -1,24 +1,46 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import {PrivateRoute, ProvideAuth} from './Routing/PrivateRoute';
+import Login from './Auth/Login';
+import Register from './Auth/Register';
+import Sudoku from './screens/Sudoku'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProvideAuth>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/">
+            <Redirect
+              to={{
+                pathname: "/home"
+              }}
+            />
+            </Route>
+            <Route path="/public">
+            </Route>
+            <Route path="/sudoku">
+              <Sudoku />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/home" />
+          </Switch>
+        </div>
+      </Router>
+    </ProvideAuth>
   );
 }
 
