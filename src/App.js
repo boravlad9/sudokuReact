@@ -1,9 +1,11 @@
 import React from "react";
 import './App.css';
 import {PrivateRoute, ProvideAuth} from './Routing/PrivateRoute';
-import Login from './Auth/Login';
 import Register from './Auth/Register';
-import Sudoku from './screens/Sudoku'
+import Sudoku from './screens/Sudoku';
+import Login from './Auth/Login';
+import Home from './components/Home';
+import Contacte from './components/Contacte';
 
 import {
   BrowserRouter as Router,
@@ -28,7 +30,11 @@ function App() {
               }}
             />
             </Route>
-            <Route path="/public">
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/contacte">
+              <Contacte />
             </Route>
             <Route path="/sudoku">
               <Sudoku />
@@ -36,7 +42,9 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <PrivateRoute path="/home" />
+            <PrivateRoute path="/home" >
+              <Home />
+            </PrivateRoute>
           </Switch>
         </div>
       </Router>

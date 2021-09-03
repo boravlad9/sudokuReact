@@ -10,7 +10,7 @@ const fakeAuth = {
   isAuthenticated: false,
   signin(cb) {
     fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
+    setTimeout(cb, 100);
   },
   signout(cb) {
     fakeAuth.isAuthenticated = false;
@@ -52,12 +52,14 @@ export function ProvideAuth({ children }) {
   );
 }
 
-function useAuth() {
+export function useAuth() {
   return useContext(authContext);
 }
 
 export function PrivateRoute({ children, ...rest }) {
   let auth = useAuth();
+  if (localStorage.getItem("token"))
+    auth.user = true;
   return (
     <Route
       {...rest}
