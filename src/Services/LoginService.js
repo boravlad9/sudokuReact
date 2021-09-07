@@ -11,6 +11,7 @@ export const apiLogin = (email, parola) =>{
 }
 
 export const apiLogout = () =>{
+  //const {getUser, createUser} = useApiRequest();
   const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`,
     'security-token': 'test'};

@@ -1,9 +1,9 @@
 import React from "react";
 import './App.css';
 import {PrivateRoute, ProvideAuth} from './Routing/PrivateRoute';
-import Register from './Auth/Register';
+import RegisterFunction from './Auth/RegisterFunction';
 import Sudoku from './screens/Sudoku';
-import Login from './Auth/Login';
+import LoginFunction from './Auth/LoginFunction';
 import Home from './components/Home';
 import Contacte from './components/Contacte';
 
@@ -11,10 +11,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
+  Redirect
 } from "react-router-dom";
 
 function App() {
@@ -31,7 +28,7 @@ function App() {
             />
             </Route>
             <Route path="/register">
-              <Register />
+              <RegisterFunction />
             </Route>
             <Route path="/contacte">
               <Contacte />
@@ -40,7 +37,7 @@ function App() {
               <Sudoku />
             </Route>
             <Route path="/login">
-              <Login />
+              <LoginFunction />
             </Route>
             <PrivateRoute path="/home" >
               <Home />

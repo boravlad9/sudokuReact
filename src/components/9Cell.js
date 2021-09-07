@@ -1,37 +1,36 @@
 import React from 'react';
 import OneCell from './1Cell.js'
 
-class NineCell extends React.Component {
+const renderOneCell = (index, props) =>{
+  return (
+    <OneCell
+      value={props.matrix[index]}
+      onClick={() => props.onClick(index)}
+    />
+  );
+}
 
-  renderOneCell(index){
-    return (
-      <OneCell
-        value={this.props.matrix[index]}
-        onClick={() => this.props.onClick(index)}
-      />
-    );
-  }
-  render() {
+function NineCell( props ){
+
     return (
       <div style={{display:"flex", flexDirection:"column", border: "1px solid black"}}>
         <div style={{display: "inline-flex"}}>
-          {this.renderOneCell(0)}
-          {this.renderOneCell(1)}
-          {this.renderOneCell(2)}
+          {renderOneCell(0, props)}
+          {renderOneCell(1, props)}
+          {renderOneCell(2, props)}
         </div>
         <div style={{display: "inline-flex"}}>
-          {this.renderOneCell(3)}
-          {this.renderOneCell(4)}
-          {this.renderOneCell(5)}
+          {renderOneCell(3, props)}
+          {renderOneCell(4, props)}
+          {renderOneCell(5, props)}
         </div>
         <div style={{display: "inline-flex"}}>
-          {this.renderOneCell(6)}
-          {this.renderOneCell(7)}
-          {this.renderOneCell(8)}
+          {renderOneCell(6, props)}
+          {renderOneCell(7, props)}
+          {renderOneCell(8, props)}
         </div>
       </div>
     );
-  }
 }
 
 export default NineCell;

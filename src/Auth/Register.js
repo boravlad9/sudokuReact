@@ -1,69 +1,51 @@
 import React from 'react';
-import {apiRegister} from '../Services/RegisterServicies';
-import {
-  Redirect,
-} from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 
-class Register extends React.Component {
+const Register = (ceva) => (
+   <div>
+     <Formik
+       initialValues={{ email: '', password: '' , firstName : '', lastName : ''}}
+       validate={values => {
+         const errors = {};
+         if (!values.email) {
+           errors.email = 'Required';
+         } else if (
+           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+         ) {
+           errors.email = 'Invalid email address';
+         }
+         return errors;
+       }}
+       onSubmit={(values, { setSubmitting }) => {
+         ceva.onClick(values.firstName, values.lastName, values.email, values.password);
+       }}
+     >
+       {({ isSubmitting }) => (
+         <Form>
+           <label htmlFor="firstName">firstName</label>
+           <Field type="firstName" name="firstName" />
+           <ErrorMessage name="firstName" component="div" />
 
-  constructor(props){
-    super(props);
-    this.state = {isLoggedIn :false, firstName : "", lastName : "", email : "", parola : "", preferred_industries : "", preferred_topics : "", other_topics : "", attending_reasons : ""};
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangeParola = this.handleChangeParola.bind(this);
-    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
-    this.handleChangeLastName = this.handleChangeLastName.bind(this);
-  }
+           <label htmlFor="lastName">lastName</label>
+           <Field type="lastName" name="lastName" />
+           <ErrorMessage name="lastName" component="div" />
 
-  registerCall(){
-    apiRegister(this.state.email, this.state.parola, this.state.firstName, this.state.lastName)
-    .then(data => {
-        const stringifiedData = JSON.stringify(data);
-        const parsedJson = JSON.parse(stringifiedData);
-        localStorage.setItem("username",`${parsedJson.data.data.user.first_name} ${parsedJson.data.data.user.last_name}`);
-        localStorage.setItem("email", parsedJson.data.data.user.email);
-        localStorage.setItem("token", parsedJson.data.data.access_token);
-        localStorage.setItem("idUser", parsedJson.data.data.user.id);
-      });
-  }
+           <label htmlFor="email">Email Address</label>
+           <Field type="email" name="email" />
+           <ErrorMessage name="email" component="div" />
 
-  handleChangeEmail(event) {
-    this.setState({email: event.target.value});
-  }
+           <label htmlFor="password">Password </label>
+           <Field type="password" name="password" />
+           <ErrorMessage name="password" component="div" />
 
-  handleChangeParola(event) {
-    this.setState({parola: event.target.value});
-  }
+           <button type="submit" disabled={isSubmitting}>
+             Submit
+           </button>
+         </Form>
+       )}
+     </Formik>
+   </div>
+ );
 
-  handleChangeFirstName(event){
-    this.setState({firstName: event.target.value});
-  }
-
-  handleChangeLastName(event){
-    this.setState({lastName: event.target.value});
-  }
-
-  render() {
-    const ceva = this.state.isLoggedIn ? (
-      <Redirect to={{pathname: "/home"}}/>
-    ) : (
-      <></>
-    );
-    return (
-      <div style = {{padding : "10px"}}>
-        <label> First name: </label>
-        <input value={this.state.firstName} onChange={this.handleChangeFirstName}/>
-        <label> Last name: </label>
-        <input value={this.state.lastName} onChange={this.handleChangeLastName}/>
-        <label> Email</label>
-        <input value={this.state.email} onChange={this.handleChangeEmail}/>
-        <label> Parola</label>
-        <input type = "password" value={this.state.parola} onChange={this.handleChangeParola}/>
-        <button onClick={this.registerCall.bind(this)}>Register</button>
-        {ceva}
-      </div>
-    );
-  }
-}
-export default Register;
+ export default Register;

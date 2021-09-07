@@ -1,9 +1,11 @@
 import React from 'react';
 import NineCell from '../components/9Cell.js'
 import {generateMatrix, isFinal, getCells} from '../Services/MatrixSudoku.js'
+import {
+  useHistory
+} from "react-router-dom";
 
 class Sudoku extends React.Component {
-
 
   constructor(props) {
     super(props);
@@ -25,7 +27,6 @@ class Sudoku extends React.Component {
     matrix = getCells(matrix);
     solution = getCells(solution);
     this.state = {solution : solution, matrix : matrix, isDone : false};
-    console.log(solution);
   }
 
   renderNineCell(index){

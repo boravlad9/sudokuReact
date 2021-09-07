@@ -1,15 +1,14 @@
 import React from 'react';
 
-class OneCell extends React.Component {
+function OneCell(props) {
 
-  render() {
-    const value = this.props.value === 0 ? '-' : this.props.value;
-    return (
-      <div style={{border: "1px solid black", padding: "10px", display: "inline"}}>
-        <p onClick={this.props.onClick} style={{display: "inline", whiteSpace: "nowrap"}} > {value} </p>
-      </div>
-    );
-  }
+  const value = props.value === 0 ? '-' : props.value;
+  return (
+    <div style={{border: "1px solid black", padding: "10px", display: "inline"}}>
+      <p onClick={props.onClick} style={{display: "inline", whiteSpace: "nowrap"}} > {value} </p>
+    </div>
+  );
+
 
 }
 
