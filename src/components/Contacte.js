@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {apiContacte} from '../Services/ContacteService';
 import {useApiRequest} from '../Services/useApiRequest';
 
 const renderTableData = (items) => {

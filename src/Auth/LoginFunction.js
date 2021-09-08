@@ -1,6 +1,5 @@
 import React from "react";
 import Login from './Login';
-import {apiLogin} from '../Services/LoginService';
 import {useApiRequest} from '../Services/useApiRequest';
 import {
   useHistory

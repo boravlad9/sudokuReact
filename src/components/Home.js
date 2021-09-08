@@ -2,7 +2,6 @@ import React from 'react';
 import {
   useHistory
 } from "react-router-dom";
-import {ApiLogout} from '../Services/LoginService';
 import {useApiRequest} from '../Services/useApiRequest';
 
 function Home() {

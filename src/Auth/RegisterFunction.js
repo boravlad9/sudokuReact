@@ -1,5 +1,4 @@
 import React from 'react';
-import {apiRegister} from '../Services/RegisterServicies';
 import {
   useHistory,
 } from "react-router-dom";
@@ -12,7 +11,6 @@ function RegisterFunction() {
   let api = useApiRequest();
 
   let registerCall = (firstName, lastName, email, parola) =>{
-    const headers = {'security-token': 'test'};
     api.register({
       email : email,
       password : parola,
