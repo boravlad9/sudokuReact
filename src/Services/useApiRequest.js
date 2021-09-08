@@ -1,25 +1,22 @@
 import axios from 'axios';
 import {useState} from 'react';
 
-const getFunction = (requestType) => {
+function getFunction(requestType, url, body, header){
   switch(requestType) {
   case 'get':
-    return axios.get;
+  {
+    return axios.get(url, header);
+  }
   case 'post':
-    return axios.post;
+    return axios.post(url, body, header);
   }
 }
 
-const excuteRequest = (requestType, url, body, header) => {
-  let ceva = getFunction(requestType);
-  console.log(ceva);
-  return ceva(url, body, header);
+function excuteRequest(requestType, url, body, header){
+  return getFunction(requestType, url, body, header);
 }
 
-function useApiRequest(requestType, url, body, header){
-  const [items, setItems] = useState(excuteRequest);
-  return items;
+export function useApiRequest(){
+  const [api] = useState({excuteRequest});
+  return api;
 }
-
-
- export default useApiRequest;

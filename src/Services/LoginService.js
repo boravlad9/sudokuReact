@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {useApiRequest} from './useApiRequest';
 
 export const apiLogin = (email, parola) =>{
   const headers = {
@@ -10,8 +11,7 @@ export const apiLogin = (email, parola) =>{
   }, {headers} );
 }
 
-export const apiLogout = () =>{
-  //const {getUser, createUser} = useApiRequest();
+export function ApiLogout(){
   const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`,
     'security-token': 'test'};

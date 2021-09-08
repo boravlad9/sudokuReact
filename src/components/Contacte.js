@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {apiContacte} from '../Services/ContacteService';
-import {
-  useHistory
-} from "react-router-dom";
+import {useApiRequest} from '../Services/useApiRequest';
 
 const renderTableData = (items) => {
   if (items === null)
@@ -22,15 +20,19 @@ const renderTableData = (items) => {
 function Contacte(){
 
   const [items, setItems] = useState(null);
+  let api = useApiRequest();
 
   useEffect(() => {
-    apiContacte().then(
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      'security-token': 'test'};
+    api.excuteRequest('get',"http://meetprep.beta.bitstone.eu/api/v1/contacts", {}, {headers}).then(
       data => {
         setItems(data.data.data.items)
       }
     );
-  }, []);
-  
+  }, [api]);
+
   return (
     <div>
       <table id='students'>

@@ -1,9 +1,7 @@
 import React from 'react';
 import NineCell from '../components/9Cell.js'
 import {generateMatrix, isFinal, getCells} from '../Services/MatrixSudoku.js'
-import {
-  useHistory
-} from "react-router-dom";
+
 
 class Sudoku extends React.Component {
 
