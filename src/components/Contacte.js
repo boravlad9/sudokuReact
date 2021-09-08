@@ -23,8 +23,8 @@ function Contacte(){
 
   useEffect(() => {
     api.contacts({}).then(
-      data => {
-        setItems(data.data.data.items);
+      response => {
+        setItems(response.data.data.items);
       }
     );
   }, []);

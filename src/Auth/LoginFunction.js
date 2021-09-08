@@ -12,11 +12,11 @@ function LoginFunction() {
   let api = useApiRequest();
   let loginCall = (email, parola) => {
     api.login({ email : email, password : parola}).then(
-      data => {
-        localStorage.setItem("username",`${data.data.data.user.first_name} ${data.data.data.user.last_name}`);
-        localStorage.setItem("email", data.data.data.user.email);
-        localStorage.setItem("token", data.data.data.authentication.access_token);
-        localStorage.setItem("idUser", data.data.data.user.id);
+      response => {
+        localStorage.setItem("username",`${response.data.data.user.first_name} ${response.data.data.user.last_name}`);
+        localStorage.setItem("email", response.data.data.user.email);
+        localStorage.setItem("token", response.data.data.authentication.access_token);
+        localStorage.setItem("idUser", response.data.data.user.id);
         history.push("/home");
       }
     );
