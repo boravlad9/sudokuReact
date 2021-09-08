@@ -7,10 +7,7 @@ import {useApiRequest} from '../Services/useApiRequest';
 
 function Home() {
   let logoutCall = () => {
-      const headers = {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        'security-token': 'test'};
-      api.excuteRequest('post',"http://meetprep.beta.bitstone.eu/api/v1/logout", {}, {headers}).then(
+      api.logout({}).then(
         data => {
           localStorage.removeItem("email");
           localStorage.removeItem("token");
@@ -19,16 +16,6 @@ function Home() {
           history.push("/login");
         }
       );
-      /*
-      ApiLogout().then(
-        data => {
-          localStorage.removeItem("email");
-          localStorage.removeItem("token");
-          localStorage.removeItem("username");
-          localStorage.removeItem("idUser");
-          history.push("/login");
-        }
-      );*/
     }
 
   let contacteCall = () => {

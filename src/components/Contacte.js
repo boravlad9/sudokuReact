@@ -23,15 +23,12 @@ function Contacte(){
   let api = useApiRequest();
 
   useEffect(() => {
-    const headers = {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      'security-token': 'test'};
-    api.excuteRequest('get',"http://meetprep.beta.bitstone.eu/api/v1/contacts", {}, {headers}).then(
+    api.contacts({}).then(
       data => {
-        setItems(data.data.data.items)
+        setItems(data.data.data.items);
       }
     );
-  }, [api]);
+  }, []);
 
   return (
     <div>

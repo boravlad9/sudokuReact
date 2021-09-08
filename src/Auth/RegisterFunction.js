@@ -13,7 +13,7 @@ function RegisterFunction() {
 
   let registerCall = (firstName, lastName, email, parola) =>{
     const headers = {'security-token': 'test'};
-    api.excuteRequest("post", "http://meetprep.beta.bitstone.eu/api/v1/register", {
+    api.register({
       email : email,
       password : parola,
       first_name : firstName,
@@ -23,22 +23,13 @@ function RegisterFunction() {
       attending_reasons: ["2"],
       terms: true,
       linkedin: 0
-    }, {headers}).then(data => {
+    }).then(data => {
         localStorage.setItem("username",`${data.data.data.user.first_name} ${data.data.data.user.last_name}`);
         localStorage.setItem("email", data.data.data.user.email);
         localStorage.setItem("token", data.data.data.access_token);
         localStorage.setItem("idUser", data.data.data.user.id);
         history.push("/home");
       });
-    /*
-    apiRegister(firstName, lastName, email, parola)
-    .then(data => {
-        localStorage.setItem("username",`${data.data.data.user.first_name} ${data.data.data.user.last_name}`);
-        localStorage.setItem("email", data.data.data.user.email);
-        localStorage.setItem("token", data.data.data.access_token);
-        localStorage.setItem("idUser", data.data.data.user.id);
-        history.push("/home");
-      });*/
   }
 
   return (
