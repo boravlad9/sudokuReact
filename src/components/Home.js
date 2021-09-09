@@ -20,7 +20,6 @@ function Home() {
   let contacteCall = () => {
     history.push("/contacte");
   }
-
   let history = useHistory();
   let api = useApiRequest();
   return (

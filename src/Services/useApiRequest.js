@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useState} from 'react';
+import {useState, useMemo, useCallback, memo} from 'react';
 import {API_METHODS, API_ENDPOINTS} from "./ApiService"
 
 const getUrl = (url) => {
@@ -23,8 +23,9 @@ const computeApiRequest = (apiEndpoint) => {
   return (body) => axios[apiEndpoint.method](getUrl(apiEndpoint.url), body, getHeader());
 }
 
-export const useApiRequest = () => {
+const computationFunction = () => {
   let requests = {};
+  console.log("ceva");
   Object.values(API_ENDPOINTS).map(apiEndpoint => {
     requests = {
       ...requests,
@@ -32,4 +33,9 @@ export const useApiRequest = () => {
     }
   })
   return requests;
+}
+
+export function useApiRequest(){
+  let ceva = useMemo(computationFunction, []);
+  return ceva;
 }
