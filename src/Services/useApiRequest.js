@@ -25,7 +25,6 @@ const computeApiRequest = (apiEndpoint) => {
 
 const computationFunction = () => {
   let requests = {};
-  console.log("ceva");
   Object.values(API_ENDPOINTS).map(apiEndpoint => {
     requests = {
       ...requests,

@@ -1,34 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {useApiRequest} from '../Services/useApiRequest';
 
-const renderTableData = (items) => {
-  if (items === null)
+const renderTableData = (item) => {
+  if (item === null)
     return null;
-  return items.map((data) => {
-   const {id, email, first_name, last_name} = data;
    return (
-     <tr key={id}>
-       <td>{first_name}</td>
-       <td>{last_name}</td>
-       <td>{email}</td>
+     <tr key={item.id}>
+       <td>{item.first_name}</td>
+       <td>{item.last_name}</td>
+       <td>{item.email}</td>
      </tr>
   )
-  });
 }
 
-function Contacte(){
-
-  const [items, setItems] = useState(null);
-  let api = useApiRequest();
-
-  useEffect(() => {
-    api.contacts({}).then(
-      response => {
-        setItems(response.data.data.items);
-      }
-    );
-  }, []);
-
+function Contacte(props){
   return (
     <div>
       <table id='students'>
@@ -38,7 +23,7 @@ function Contacte(){
             <td>Last Name</td>
             <td>Email</td>
           </tr>
-          {renderTableData(items)}
+          {renderTableData(props.selected)}
         </tbody>
       </table>
     </div>

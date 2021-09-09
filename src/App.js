@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import './App.css';
 import {PrivateRoute, ProvideAuth} from './Routing/PrivateRoute';
 import RegisterFunction from './Auth/RegisterFunction';
 import Sudoku from './screens/Sudoku';
 import LoginFunction from './Auth/LoginFunction';
 import Home from './components/Home';
+import {Header} from './components/Header';
 import Contacte from './components/Contacte';
 
 import {
@@ -15,8 +16,13 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const [contact, setContact] = useState(null);
+  const valueWasSelected = (value) => {
+      setContact(value);
+  };
   return (
     <ProvideAuth>
+      <Header toExecute = {valueWasSelected}/>
       <Router>
         <div>
           <Switch>
@@ -31,7 +37,7 @@ function App() {
               <RegisterFunction />
             </Route>
             <Route path="/contacte">
-              <Contacte />
+              <Contacte selected = {contact}/>
             </Route>
             <Route path="/sudoku">
               <Sudoku />
