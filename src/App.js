@@ -17,12 +17,16 @@ import {
 
 function App() {
   const [contact, setContact] = useState(null);
+  const [selectedValue, setValue] = useState(null);
   const valueWasSelected = (value) => {
-      setContact(value);
+      setValue(value);
   };
+  const valueContact = (value) => {
+     setContact(value);
+  }
   return (
     <ProvideAuth>
-      <Header toExecute = {valueWasSelected}/>
+      <Header valueSelected = {valueWasSelected} toExecute = {valueContact}/>
       <Router>
         <div>
           <Switch>
@@ -37,7 +41,7 @@ function App() {
               <RegisterFunction />
             </Route>
             <Route path="/contacte">
-              <Contacte selected = {contact}/>
+              <Contacte allContacts = {contact} selected = {selectedValue} />
             </Route>
             <Route path="/sudoku">
               <Sudoku />
