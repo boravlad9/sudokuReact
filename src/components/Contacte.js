@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import {useApiRequest} from '../Services/useApiRequest';
 
-const renderTableData = (item) => {
-  if (item === null)
+const renderTableData = (items) => {
+  if (items === null)
     return null;
+  return items.map((data) => {
+   const {id, email, first_name, last_name} = data;
    return (
-     <tr key={item.id}>
-       <td>{item.first_name}</td>
-       <td>{item.last_name}</td>
-       <td>{item.email}</td>
+     <tr key={id}>
+       <td>{first_name}</td>
+       <td>{last_name}</td>
+       <td>{email}</td>
      </tr>
   )
+  });
 }
+
 
 function Contacte(props){
   return (
