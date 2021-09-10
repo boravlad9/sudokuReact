@@ -44,3 +44,8 @@
   color: white;
   font-size: 30px;
 }
+
+.tableAndText{
+  display: flex;
+  
+}

@@ -1,7 +1,10 @@
 import React, {useState,useEffect} from "react";
 import {useApiRequest} from '../Services/useApiRequest';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {getContacte} from '../Actions/actions'
 
-export function Header(props){
+function Header(props)  {
   const [items, setItems] = useState(null);
   const [selectedValue, setValue] = useState(null);
 
@@ -41,3 +44,10 @@ export function Header(props){
   );
 
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(getContacte, dispatch)
+})
+
+
+export default connect(null, mapDispatchToProps)(Header);

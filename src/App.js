@@ -5,7 +5,7 @@ import RegisterFunction from './Auth/RegisterFunction';
 import Sudoku from './screens/Sudoku';
 import LoginFunction from './Auth/LoginFunction';
 import Home from './components/Home';
-import {Header} from './components/Header';
+import Header from './components/Header';
 import Contacte from './components/Contacte';
 
 import {

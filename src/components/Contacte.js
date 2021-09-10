@@ -19,7 +19,7 @@ const renderTableData = (items) => {
 
 function Contacte(props){
   return (
-    <div>
+    <div className="tableAndText">
       <table id='students'>
         <tbody>
           <tr>
