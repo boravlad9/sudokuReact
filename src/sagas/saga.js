@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import {useApiRequest} from '../Services/useApiRequest';
 import {setContacte} from '../Actions/actions'
 

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {useApiRequest} from '../Services/useApiRequest';
+import { connect, useDispatch, useSelector} from 'react-redux'
+import {getContacte} from '../Actions/actions'
 
 const renderTableData = (items) => {
-  if (items === null)
+  if (items === null || items === undefined)
     return null;
   return items.map((data) => {
    const {id, email, first_name, last_name} = data;
@@ -17,7 +19,17 @@ const renderTableData = (items) => {
 }
 
 
-function Contacte(props){
+function Contacte(){
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+
+  const selected = useSelector((state) => state.selected);
+
+
+  useEffect(() => {
+    dispatch(getContacte());
+  }, [dispatch]);
+
   return (
     <div className="tableAndText">
       <table id='students'>
@@ -27,14 +39,14 @@ function Contacte(props){
             <td>Last Name</td>
             <td>Email</td>
           </tr>
-          //{renderTableData(props.allContacts)}
+            {renderTableData(contacts)}
         </tbody>
       </table>
       {
-        /*props.selected !== null &&
+        selected !== null && selected !== undefined &&
         <p>
-          {props.selected.first_name} {props.selected.last_name} {props.selected.email}
-        </p>*/
+          {selected.first_name} {selected.last_name} {selected.email}
+        </p>
       }
     </div>
   );
