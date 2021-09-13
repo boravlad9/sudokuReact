@@ -1,19 +1,16 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import {useApiRequest} from '../Services/useApiRequest';
+import {setContacte} from '../Actions/actions'
 
-function* fetchContact(action) {
-
+function* FetchContact(action) {
   let api = useApiRequest();
-  const contacts = yield call(api.contacts, action.payload).then(
-    response => {
-      return response.data.data.items;
-    }
-  );
-  yield put({contacts: contacts});
+  let contacts = yield call(api.contacts, action.payload)
+  contacts = contacts.data.data.items;
+  yield put(setContacte(contacts));
 }
 
 function* mySaga() {
-  yield takeEvery("GET_CONTACTE", fetchContact);
+  yield takeEvery("GET_CONTACTE", FetchContact);
 }
 
 export default mySaga;

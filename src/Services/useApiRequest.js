@@ -35,6 +35,7 @@ const computationFunction = () => {
 }
 
 export function useApiRequest(){
-  let ceva = useMemo(computationFunction, []);
+  //let ceva = useMemo(computationFunction, []);
+  let ceva = computationFunction();
   return ceva;
 }

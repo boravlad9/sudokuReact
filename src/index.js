@@ -7,14 +7,16 @@ import createSagaMiddleware from 'redux-saga'
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import {reducer} from "./reducers/reducer"
+import mySaga from './sagas/saga'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   reducer,
+  {},
   applyMiddleware(sagaMiddleware)
 )
 
-//sagaMiddleware.run(mySaga)
+sagaMiddleware.run(mySaga)
 
 
 ReactDOM.render(

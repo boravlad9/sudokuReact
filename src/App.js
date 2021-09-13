@@ -26,7 +26,7 @@ function App() {
   }
   return (
     <ProvideAuth>
-      <Header valueSelected = {valueWasSelected} toExecute = {valueContact}/>
+      <Header />
       <Router>
         <div>
           <Switch>
@@ -41,7 +41,7 @@ function App() {
               <RegisterFunction />
             </Route>
             <Route path="/contacte">
-              <Contacte allContacts = {contact} selected = {selectedValue} />
+              <Contacte/>
             </Route>
             <Route path="/sudoku">
               <Sudoku />

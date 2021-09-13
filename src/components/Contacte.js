@@ -27,14 +27,14 @@ function Contacte(props){
             <td>Last Name</td>
             <td>Email</td>
           </tr>
-          {renderTableData(props.allContacts)}
+          //{renderTableData(props.allContacts)}
         </tbody>
       </table>
       {
-        props.selected !== null &&
+        /*props.selected !== null &&
         <p>
           {props.selected.first_name} {props.selected.last_name} {props.selected.email}
-        </p>
+        </p>*/
       }
     </div>
   );
