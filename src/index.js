@@ -3,20 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import {reducer} from "./reducers/reducer"
+import createSagaMiddleware from 'redux-saga'
 import mySaga from './sagas/saga'
+import thunk from 'redux-thunk';
 
-const sagaMiddleware = createSagaMiddleware()
+//const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   reducer,
-  {},
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(thunk)
 )
 
-sagaMiddleware.run(mySaga)
+//sagaMiddleware.run(mySaga)
 
 
 ReactDOM.render(

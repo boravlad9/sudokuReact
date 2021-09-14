@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import {useApiRequest} from '../Services/useApiRequest';
 import { bindActionCreators } from 'redux'
 import { connect, useDispatch, useSelector} from 'react-redux'
-import {getContacte, setSelected} from '../Actions/actions'
+import {GetContacte, setContacte, setSelected} from '../Actions/actions'
 
 function Header(props)  {
   const [selectedValue, setValue] = useState(null);
@@ -22,7 +22,7 @@ function Header(props)  {
   responseHandle(contacts)
 
   useEffect(() => {
-    dispatch(getContacte());
+    dispatch(GetContacte());
     responseHandle(contacts)
   }, [dispatch]);
 

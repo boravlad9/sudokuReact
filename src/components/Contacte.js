@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useApiRequest} from '../Services/useApiRequest';
 import { connect, useDispatch, useSelector} from 'react-redux'
-import {getContacte} from '../Actions/actions'
+import {GetContacte} from '../Actions/actions'
 
 const renderTableData = (items) => {
   if (items === null || items === undefined)
@@ -27,7 +27,7 @@ function Contacte(){
 
 
   useEffect(() => {
-    dispatch(getContacte());
+    dispatch(GetContacte());
   }, [dispatch]);
 
   return (
